@@ -11,7 +11,8 @@ import Home from './components/Home';
 import LogIn from './components/LogIn';
 import Registration from './components/Registration';
 import Blog from './components/Blog';
-import Banner from './components/Banner';
+import FrontPage from './components/FrontPage';
+import ChefSection from './components/ChefSection';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<Banner></Banner>
+        element:<FrontPage></FrontPage>,
+        loader: () => fetch("http://localhost:5000/chefs_data")
       },
       {
         path: "/login",
@@ -33,6 +35,11 @@ const router = createBrowserRouter([
       {
         path:"/blog",
         element: <Blog></Blog>
+      },
+      {
+        path:'/chefsection/:id',
+        element:<ChefSection></ChefSection>,
+        loader : ({params}) => fetch(`http://localhost:5000/recipe_details/${params.id}`)
       }
     ]
   },
