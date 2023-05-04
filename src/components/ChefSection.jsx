@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLoaderData } from 'react-router-dom'
 import RecipeCard from './RecipeCard';
 
 const ChefSection = () => {
     const recipe_data = useLoaderData()
+    const [chefdata, setchefdata] = useState([]);
     console.log(recipe_data);
     const {id,recipe_name , cooking_method } = recipe_data
-    console.log(recipe_name);
+    // console.log(recipe_name);
+    useEffect(()=>{
+        fetch(`http://localhost:5000/chefs_data/${id}`)
+        .then(res=>res.json())
+        .then(data=>setchefdata(data))
+    },[])
 
     // const recipeList = recipe_name.map(item =>
     //     <div><RecipeCard item={item}
@@ -20,7 +26,7 @@ const ChefSection = () => {
 return(
    
     <div>
-        <RecipeCard data={recipe_data}></RecipeCard>
+        <RecipeCard chefdata={chefdata} data={recipe_data}></RecipeCard>
     </div>
 
 )
