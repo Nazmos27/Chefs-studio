@@ -1,8 +1,9 @@
 import React from 'react'
 import Banner from './Banner'
-import ChefSection from './ChefSection'
 import { useLoaderData } from 'react-router-dom'
 import ChefCard from './ChefDetail/ChefCard'
+import Services from './Services'
+import Delivery from './Delivery'
 
 const FrontPage = () => {
   const chef_data = useLoaderData()
@@ -17,6 +18,9 @@ const FrontPage = () => {
             ></ChefCard>)
           }
         </div>
+        <Services></Services>
+        <Delivery></Delivery>
+        
     </div>
   )
 }
