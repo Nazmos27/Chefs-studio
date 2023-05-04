@@ -1,11 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Authproviders/AuthProviders'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 const LogIn = () => {
   const [success, setSuccess] = useState('')
   const [errormsg, setErrormsg] = useState('')
   const { signIn } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   const handleSignIn = (event) => {
     setSuccess('')
@@ -18,6 +22,7 @@ const LogIn = () => {
       .then(result => {
         console.log(result.user);
         setSuccess("User login successful")
+        navigate(from , {replace:true})
       })
       .catch(error => {
         console.log(error.message);

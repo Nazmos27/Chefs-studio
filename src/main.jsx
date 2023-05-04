@@ -15,11 +15,13 @@ import FrontPage from './components/FrontPage';
 import ChefSection from './components/ChefSection';
 import AuthProviders from './Authproviders/AuthProviders';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import ErrorPage from './components/ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -36,11 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <Blog></Blog>
+        element: <PrivateRoute><Blog></Blog></PrivateRoute>
       },
       {
         path: '/chefsection/:id',
-        element: <ChefSection></ChefSection>,
+        element: <PrivateRoute><ChefSection></ChefSection></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/recipe_details/${params.id}`)
       }
     ]

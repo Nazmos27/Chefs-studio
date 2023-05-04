@@ -18,6 +18,7 @@ const AuthProviders = ({ children }) => {
 
     const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
+
     }
 
     const logOut = () => {
