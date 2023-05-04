@@ -14,6 +14,7 @@ import Blog from './components/Blog';
 import FrontPage from './components/FrontPage';
 import ChefSection from './components/ChefSection';
 import AuthProviders from './Authproviders/AuthProviders';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <FrontPage></FrontPage>,
+        element: <PrivateRoute><FrontPage></FrontPage></PrivateRoute>,
         loader: () => fetch("http://localhost:5000/chefs_data")
       },
       {
