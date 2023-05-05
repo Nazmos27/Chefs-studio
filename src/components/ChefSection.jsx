@@ -9,7 +9,7 @@ const ChefSection = () => {
     const {id,recipe_name , cooking_method } = recipe_data
     // console.log(recipe_name);
     useEffect(()=>{
-        fetch(`http://localhost:5000/chefs_data/${id}`)
+        fetch(`https://assignment-10-server-nazmos27.vercel.app/chefs_data/${id}`)
         .then(res=>res.json())
         .then(data=>setchefdata(data))
     },[])

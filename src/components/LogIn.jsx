@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Authproviders/AuthProviders'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from 'react-icons/fa';
 
 const auth = getAuth();
 
 const LogIn = () => {
+  const [show,setShow] = useState(false)
   const [success, setSuccess] = useState('')
   const [errormsg, setErrormsg] = useState('')
   const { signIn } = useContext(AuthContext)
@@ -16,6 +17,7 @@ const LogIn = () => {
   const from = location.state?.from?.pathname || '/'
 
   const handleSignIn = (event) => {
+    
     setSuccess('')
     setErrormsg('')
     event.preventDefault()
@@ -72,7 +74,12 @@ const LogIn = () => {
                   <label className="label">
                     <span className="label-text">Password</span>
                   </label>
-                  <input type="password" name='password' placeholder="password" className="input input-bordered" />
+                  <input type={show ? "text":"password"} name='password' placeholder="password" className="input input-bordered" />
+                  <p className='text-right' onClick={() => setShow(!show)}><small>
+                    {
+                      show ? <div className='flex items-center'><FaEye></FaEye> <p>Hide Password</p> </div> : <div className='flex items-center'><FaEyeSlash></FaEyeSlash> <p>Show Password</p> </div>
+                    }
+                    </small></p>
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                   </label>
