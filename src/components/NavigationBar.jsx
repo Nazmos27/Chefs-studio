@@ -26,8 +26,13 @@ const NavigationBar = () => {
                             <ActiveLink to='/blog'><li><a>Blog</a></li></ActiveLink>
                             <ActiveLink to='/login'><li><a>Sign In</a></li></ActiveLink>
                             <ActiveLink to='/registration'><li><a>Register</a></li></ActiveLink>
+                            {
+                            user ? <button onClick={handleLogout} className="btn">Log Out</button>:
+                            <ActiveLink to="/login"><button className="btn">Log In</button></ActiveLink>
+                        }
                         </ul>
                     </div>
+                    <img className='md:h-20 md:w-20 h-10 w-10' src="https://cdn-icons-png.flaticon.com/512/1182/1182239.png?w=740&t=st=1683300821~exp=1683301421~hmac=b440324ea55afd97ac45b53ec674377d23a3a407d70b52ea3fca16e05239982d" alt="" />
                     <Link to='/' className="btn btn-ghost normal-case text-2xl" >Chef's Studio</Link>
                     {/* <sub className='md:text-sm text-xsm'>Food From Heaven</sub> */}
                 </div>
@@ -36,18 +41,19 @@ const NavigationBar = () => {
                         <ActiveLink to='/blog'><li><a>Blog</a></li></ActiveLink>
                         <ActiveLink to='/login'><li><a>Sign In</a></li></ActiveLink>
                         <ActiveLink to='/registration'><li><a>Register</a></li></ActiveLink>
+                        {
+                            user ? <button onClick={handleLogout} className="btn">Log Out</button>:
+                            <ActiveLink to="/login"><button className="btn">Log In</button></ActiveLink>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end">
                     {
-                        user ?
-                            <div className='flex items-center gap-3'>
+                        user &&
+                            <div className='md:flex justify-center items-center md:gap-3'>
                                 <img src={user.photoURL} alt={user.displayName} className='w-14 rounded-full'/>
-                                <button onClick={handleLogout} className="btn">Log Out</button>
-                                
                             </div>
-                            :
-                            <ActiveLink to="/login"><button className="btn">Log In</button></ActiveLink>
+                            
                     }
 
                 </div>

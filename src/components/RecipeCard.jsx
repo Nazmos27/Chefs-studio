@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import Rating from 'react-rating';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RecipeCard = ({ data, chefdata }) => {
 
@@ -8,12 +10,14 @@ const RecipeCard = ({ data, chefdata }) => {
     const { chef_name, chefs_img, experience, number_of_recipes, bio ,rating } = chefdata
 
 
+    const handleFavorite = ()=> {
+        toast("Added To Favorite List")
+    }
 
 
 
 
-
-    const { id, cooking_method, ingredients, recipe_name, recipe_img } = data
+    const {  cooking_method, ingredients, recipe_name, recipe_img } = data
     console.log(data);
     const recipeList = recipe_name.map((item, index) =>
 
@@ -26,7 +30,7 @@ const RecipeCard = ({ data, chefdata }) => {
                     <p className='md:text-sm text-xs'>{cooking_method[index]}</p>
                     <p className='text-green-500 md:text-sm text-xs'>Ingredients: {ingredients[index].join(", ")}</p>
                     <div className="card-actions justify-start">
-                        <button className="btn btn-primary mb-10 ">Favorite</button>
+                        <button onClick={handleFavorite} className="btn btn-primary mb-10 ">Favorite</button>
                     </div>
                 </div>
             </div>
@@ -58,6 +62,7 @@ const RecipeCard = ({ data, chefdata }) => {
             <div className='flex gap-6 my-10 py-20 px-10 bg-no-repeat bg-cover justify-center items-center' style={{ backgroundImage: 'url("https://img.freepik.com/premium-photo/boiled-large-octopus-with-grilled-vegetables-black-stone-plate-seafood-top-view-free-space-your-text_187166-42780.jpg?w=1380")' }}>
                 {recipeList}
             </div>
+            <ToastContainer></ToastContainer>
         </div>
 
     )

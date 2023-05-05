@@ -6,7 +6,7 @@ const ChefSection = () => {
     const recipe_data = useLoaderData()
     const [chefdata, setchefdata] = useState([]);
     console.log(recipe_data);
-    const {id,recipe_name , cooking_method } = recipe_data
+    const {id } = recipe_data
     // console.log(recipe_name);
     useEffect(()=>{
         fetch(`https://assignment-10-server-nazmos27.vercel.app/chefs_data/${id}`)
@@ -14,12 +14,7 @@ const ChefSection = () => {
         .then(data=>setchefdata(data))
     },[])
 
-    // const recipeList = recipe_name.map(item =>
-    //     <div><RecipeCard item={item}
-    //     data={recipe_data}
-        
-    //     ></RecipeCard></div>
-    // )
+
     
     
     

@@ -1,7 +1,8 @@
 import React from 'react'
 import Rating from 'react-rating';
 import { Link } from 'react-router-dom';
-import { FaBaby, FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import LazyLoad from 'react-lazy-load';
 
 
 const ChefCard = ({ data }) => {
@@ -11,7 +12,9 @@ const ChefCard = ({ data }) => {
         <div>
             <div className=" hero py-10 px-6 bg-base-200">
                 <div className="hero-content flex-col lg:flex-row">
+                    <LazyLoad>
                     <img src={chefs_img} className="h-60 w-44 rounded-lg shadow-2xl" />
+                    </LazyLoad>
                     <div>
                         <h1 className="text-3xl font-bold">{chef_name}</h1>
                         <span className='text-green-500 md:text-xl text-sm'>Years of Experience : {experience}</span><br />

@@ -20,6 +20,8 @@ const Registration = () => {
     const password = form.password.value
     console.log(username);
     console.log(photo);
+    setSuccess('')
+    setErrormsg('')
 
     
 
