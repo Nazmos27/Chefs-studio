@@ -5,7 +5,7 @@ const ActiveLink = ({to,children}) => {
     return (
         <NavLink
             to={to}
-            className={({ isActive, isPending }) =>
+            className={({ isActive }) =>
                 isActive ? "underline": ""
             }
         >
