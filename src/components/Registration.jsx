@@ -1,27 +1,50 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Authproviders/AuthProviders'
+import { updateProfile } from "firebase/auth";
+
+
+
+
 
 
 const Registration = () => {
   const [success, setSuccess] = useState('')
   const [errormsg, setErrormsg] = useState('')
-  const { createUser } = useContext(AuthContext)
+  const {user, createUser  } = useContext(AuthContext)
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.target
     const email = form.email.value
+    const photo = form.photo.value
+    const username = form.name.value 
     const password = form.password.value
+    console.log(username);
+    console.log(photo);
+
+    
+
     createUser(email, password)
       .then(result => {
         console.log(result.user);
-        event.reset()
+        event.target.reset()
         setSuccess("Registration Completed")
+
+        updateProfile(result.user, {
+          displayName: username, photoURL: photo
+        })
+        .then(()=> {
+          console.log("Profile Updated")
+        })
+        .catch(error => console.log(error.message))
       })
       .catch(error => {
         setErrormsg(error.message)
       })
 
+      
+
   }
+
 
 
 
@@ -66,6 +89,7 @@ const Registration = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>
+              
             </div>
           </div>
         </div>

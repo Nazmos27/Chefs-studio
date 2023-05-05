@@ -25,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <PrivateRoute><FrontPage></FrontPage></PrivateRoute>,
+        element: <FrontPage></FrontPage>,
         loader: () => fetch("http://localhost:5000/chefs_data")
       },
       {

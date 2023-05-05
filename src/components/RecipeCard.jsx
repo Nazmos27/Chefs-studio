@@ -20,13 +20,13 @@ const RecipeCard = ({ data, chefdata }) => {
         <div>
             <div className="text-white card w-[350px] glass">
                 <figure><img src={recipe_img[index]} alt="car!" /></figure>
-                <div className="card-body h-[600px]">
+                <div className="card-body h-[500px]">
                     <h2 className="card-title">{item}</h2>
                     <hr className='border-[1px] border-white' />
-                    <p>{cooking_method[index]}</p>
-                    <p className='text-green-500'>Ingredients: {ingredients[index].join(", ")}</p>
+                    <p className='md:text-sm text-xs'>{cooking_method[index]}</p>
+                    <p className='text-green-500 md:text-sm text-xs'>Ingredients: {ingredients[index].join(", ")}</p>
                     <div className="card-actions justify-start">
-                        <button className="btn btn-primary mb-10">Favorite</button>
+                        <button className="btn btn-primary mb-10 ">Favorite</button>
                     </div>
                 </div>
             </div>
